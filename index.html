@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>リアル美女プロンプトジェネレーター（3出力ボックス版）</title>
+  <style>
+    body {
+      max-width: 900px;
+      margin: 0 auto;
+      font-family: 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+    textarea {
+      width: 100%;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    button {
+      margin: 6px 0 20px 0;
+      padding: 8px 16px;
+      background: #222;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    select, label {
+      margin-bottom: 10px;
+      display: block;
+    }
+    .output-section {
+      margin-top: 30px;
+      padding-top: 10px;
+      border-top: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>リアル美女プロンプトジェネレーター</h1>
+  <p style="color: #555;">条件を選んで、「▶ プロンプトを生成する」を押してください。</p>
+  <hr>
+
+  <!-- 各種セレクト項目（省略せず残します） -->
+  <h2>モデルスタイル</h2>
+  <select id="style">
+    <option value="fashion magazine style">ファッション誌風</option>
+    <option value="posing like a fashion model">モデルポーズ</option>
+    <option value="runway model">ランウェイ風</option>
+    <option value="candid posture">自然な姿勢</option>
+    <option value="hands on hips, elegant pose">手を腰に・エレガント</option>
+  </select>
+
+  <h2>年齢層</h2>
+  <select id="age">
+    <option value="teen girl">10代</option>
+    <option value="young woman">20代</option>
+    <option value="adult woman">30〜40代</option>
+    <option value="middle-aged woman">50〜60代</option>
+    <option value="elderly woman">70代前後</option>
+  </select>
+
+  
+  <h2>魅力タイプ</h2>
+  <select id="charm">
+    <option value="">（未選択）</option>
+    <option value="idol-like, cheerful aura">アイドル風</option>
+    <option value="cute, sweet-looking, kawaii">可愛い</option>
+    <option value="elegant, refined features">美人系</option>
+    <option value="goddess-like beauty, breathtaking, stunning">絶世の美女</option>
+  </select>
+
+<h2>国籍</h2>
+  <select id="country">
+    <option value="japanese woman">日本</option>
+    <option value="korean woman">韓国</option>
+    <option value="chinese woman">中国</option>
+    <option value="thai woman">タイ</option>
+    <option value="indian woman">インド</option>
+    <option value="american woman">アメリカ</option>
+    <option value="british woman">イギリス</option>
+    <option value="french woman">フランス</option>
+    <option value="brazilian woman">ブラジル</option>
+    <option value="russian woman">ロシア</option>
+  </select>
+
+  <h2>髪型</h2>
+  <select id="hair">
+    <option value="long hair">ロング</option>
+    <option value="short hair">ショート</option>
+    <option value="wavy hair">ウェーブ</option>
+    <option value="bob cut">ボブ</option>
+    <option value="ponytail">ポニーテール</option>
+  </select>
+
+  <h2>表情</h2>
+  <select id="expression">
+    <option value="smiling">笑顔</option>
+    <option value="soft smile">やわらかい微笑み</option>
+    <option value="neutral">真顔</option>
+    <option value="gazing">見つめる</option>
+    <option value="melancholy">物憂げ</option>
+  </select>
+
+  
+  <h2>髪色</h2>
+  <select id="hairColor">
+    <option value="">（未選択）</option>
+    <option value="black hair">黒</option>
+    <option value="brown hair">茶</option>
+    <option value="blonde hair">金髪</option>
+    <option value="red hair">赤</option>
+    <option value="silver hair">銀</option>
+    <option value="pink hair">ピンク</option>
+    <option value="blue hair">青</option>
+    <option value="white hair">白</option>
+  </select>
+
+  <h2>目の色</h2>
+  <select id="eyeColor">
+    <option value="">（未選択）</option>
+    <option value="black eyes">黒</option>
+    <option value="brown eyes">茶</option>
+    <option value="blue eyes">青</option>
+    <option value="green eyes">緑</option>
+    <option value="red eyes">赤</option>
+    <option value="golden eyes">金</option>
+    <option value="purple eyes">紫</option>
+  </select>
+
+  
+  <h2>服装スタイル</h2>
+  <select id="outfit">
+    <option value="casual outfit">カジュアル</option>
+    <option value="business suit">スーツ</option>
+    <option value="traditional kimono">和服</option>
+    <option value="formal dress">フォーマルドレス</option>
+    <option value="gothic lolita fashion">ゴスロリ</option>
+  </select>
+
+
+    <option value="casual outfit">カジュアル</option>
+    <option value="elegant dress">ドレッシー</option>
+    <option value="business suit">スーツ</option>
+    <option value="traditional clothes">民族衣装</option>
+  </select>
+
+  
+  <h2>アイドルスタイル</h2>
+  <select id="idolStyle">
+    <option value="">（未選択）</option>
+    <option value="japanese idol style, sweet aura, innocent smile, frilly outfit, school uniform">日本風</option>
+    <option value="kpop idol style, charismatic aura, confident gaze, stylish outfit, performance look">韓国風</option>
+  </select>
+
+<h2>背景</h2>
+  <select id="background">
+    <option value="studio background">スタジオ</option>
+    <option value="natural scenery">自然</option>
+    <option value="indoor setting">室内</option>
+    <option value="night cityscape">夜景</option>
+    <option value="bokeh background">ぼかし背景</option>
+  </select>
+
+  <h2>構図</h2>
+  <select id="angle">
+    <option value="close-up portrait">クローズアップ</option>
+    <option value="upper body shot">上半身</option>
+    <option value="full body view">全身</option>
+    <option value="diagonal angle">斜め構図</option>
+    <option value="side profile">横顔</option>
+  </select>
+
+  <h2>画風</h2>
+  <select id="artstyle">
+    <option value="photo-realistic">写真風</option>
+    <option value="oil painting style">油絵風</option>
+  </select>
+
+  <h2>RAW表現</h2>
+  <label><input type="checkbox" id="raw" checked> RAW写真風を追加する</label>
+
+  <button onclick="generateAll()">▶ プロンプトを生成する</button>
+
+  <div class="output-section">
+    <h3>Stable Diffusion 用プロンプト</h3>
+    <textarea id="output" rows="4" readonly></textarea>
+    <button onclick="copyPrompt()">コピー（SD）</button>
+
+    <h3>ネガティブプロンプト</h3>
+    <textarea id="negative" rows="4" readonly></textarea>
+    <button onclick="copyNegative()">コピー（Negative）</button>
+
+    <h3>DALL·E 3 用自然文プロンプト</h3>
+    <textarea id="dalleOutput" rows="4" readonly></textarea>
+    <button onclick="copyDalle()">コピー（DALL·E）</button>
+  </div>
+
+  <script>
+    const negativeRealistic = `(worst quality, low quality:1.4), lowres, blurry, jpeg artifacts, watermark, signature, text, username, logo,
+bad anatomy, bad hands, missing fingers, extra fingers, fused fingers, deformed hands,
+bad proportions, mutated hands, long neck, extra limbs, cloned face, extra head,
+uncanny valley, cross-eye, poorly drawn face, asymmetric eyes, malformed limbs,
+bad feet, long body, distorted body,
+cartoon, anime, manga, 2d, 3d, 3dcg, sketch, cel shading, comic, illustration`;
+
+    const negativeOil = `(worst quality, low quality:1.3), lowres, bad anatomy, text, signature, watermark, blurry, jpeg artifacts,
+extra fingers, missing fingers, fused limbs, bad proportions, flat colors,
+poorly drawn hands, disfigured, mutated, ugly, extra arms, deformed`;
+
+    function generatePrompt() {
+      const style = document.getElementById("style").value;
+      const country = document.getElementById("country").value;
+      const hair = document.getElementById("hair").value;
+      const expression = document.getElementById("expression").value;
+      const hairColor = document.getElementById("hairColor").value;
+      const eyeColor = document.getElementById("eyeColor").value;
+      const idolStyle = document.getElementById("idolStyle").value;
+      const charm = document.getElementById("charm").value;
+      const outfit = document.getElementById("outfit").value;
+      const background = document.getElementById("background").value;
+      const angle = document.getElementById("angle").value;
+      const artstyle = document.getElementById("artstyle").value;
+      const raw = document.getElementById("raw").checked;
+      const age = document.getElementById("age").value;
+
+      let baseQuality = "(masterpiece, best quality:1.3)";
+      let rawTags = raw ? ", (RAW photo, 8k, ultra detailed:1.2)" : "";
+
+      const prompt = `${baseQuality}${rawTags}, perfect fingers, detailed hands, high detail, realistic body, detailed anatomy, ${style}, ${artstyle}, ${age}, ${country}, ${hair}, ${hairColor}, ${eyeColor}, ${expression}${charm ? ", " + charm : ""}, ${outfit}${idolStyle ? ", " + idolStyle : ""}, ${background}, ${angle}`;
+      document.getElementById("output").value = prompt;
+
+      const negative = artstyle === "oil painting style" ? negativeOil : negativeRealistic;
+      document.getElementById("negative").value = negative;
+
+      const dalle = `A ${age}, ${country}, with ${hair}, ${hairColor}, ${eyeColor}, ${expression}${charm ? ", " + charm : ""}, wearing a ${outfit}${idolStyle ? " (" + idolStyle + ")" : ""}. She is in a ${background}, shown in a ${angle}. Style: ${style}. Photorealistic. Avoid cartoon or 3D effects. Emphasize natural beauty, correct anatomy, and realistic lighting.`;
+      document.getElementById("dalleOutput").value = dalle;
+    }
+
+    function generateAll() {
+      generatePrompt();
+    }
+
+    function copyPrompt() {
+      document.getElementById("output").select();
+      document.execCommand("copy");
+    }
+
+    function copyNegative() {
+      document.getElementById("negative").select();
+      document.execCommand("copy");
+    }
+
+    function copyDalle() {
+      document.getElementById("dalleOutput").select();
+      document.execCommand("copy");
+    }
+  </script>
+
+  <footer style="margin-top: 60px; padding: 20px; text-align: center; font-size: 0.9em; color: #888; border-top: 1px solid #ccc;">
+    © 2025 MochiTools Prompt Generator. Designed for creative inspiration only.
+  </footer>
+</body>
+</html>
+
